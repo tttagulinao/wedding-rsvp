@@ -83,9 +83,10 @@
         <div class="text-center mb-12 sm:mb-16 fade-in">
             <!-- Botanical Header Decoration -->
             <div class="flex justify-center items-center mb-6">
-                <svg class="w-16 h-16 sm:w-20 sm:h-20 text-sage" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L8 8h8l-4-6zm0 20l4-6H8l4 6zm8-10l-6-4v8l6-4zM4 12l6 4V8l-6 4z"/>
-                </svg>
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-sage/20 overflow-hidden bg-sage-light/30 flex items-center justify-center">
+                    <img src="logo2.png"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                </div>
             </div>
             
             <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-earth mb-3">
@@ -155,8 +156,6 @@
                     <select id="guestCount" name="guestCount" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
                         <option value="1">1 Guest</option>
                         <option value="2">2 Guests</option>
-                        <option value="3">3 Guests</option>
-                        <option value="4">4 Guests</option>
                     </select>
                 </div>
 
@@ -205,6 +204,84 @@
             </div>
         </div>
 
+        <!-- Wedding Party -->
+        <div class="bg-white rounded-2xl nature-shadow p-6 sm:p-8 mb-8 fade-in hover-lift">
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 7H17c-.8 0-1.54.37-2.01.99L14 9l-1-1.01A2.48 2.48 0 0 0 11 7H9.46c-.8 0-1.54.37-2.01.99L5.5 10H8v12h2v-6h4v6h2z"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-2xl font-medium text-earth mb-3">Our Wedding Party</h3>
+            </div>
+
+            <!-- Principal Sponsors -->
+            <div class="grid sm:grid-cols-2 gap-6 text-center mb-8">
+                <div class="space-y-3">
+                    <h4 class="font-serif text-lg font-medium text-sage mb-2">Ninong</h4>
+                    <div class="space-y-1 text-sm text-gray-600">
+                        <p>• </p>
+                        <p>• </p>
+                        <p>• </p>
+                        <p>• </p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-serif text-lg font-medium text-sage mb-2">Ninang</h4>
+                    <div class="space-y-1 text-sm text-gray-600">
+                        <p>• </p>
+                        <p>• </p>
+                        <p>• </p>
+                        <p>• </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridal and Groom's Party -->
+            <div class="grid sm:grid-cols-2 gap-6 text-center mb-6">
+                <!-- Bridal Party -->
+                <div class="space-y-3">
+                    <h4 class="font-serif text-lg font-medium text-sage mb-2">Bridal Party</h4>
+                    <div class="space-y-1 text-sm text-gray-600">
+                        <p class="font-medium text-earth">Maid of Honor</p>
+                        <p>• </p>
+                        <p class="font-medium text-earth mt-3">Bridesmaids</p>
+                        <p>• </p>
+                        <p>• </p>
+                    </div>
+                </div>
+
+                <!-- Groom's Party -->
+                <div class="space-y-3">
+                    <h4 class="font-serif text-lg font-medium text-sage mb-2">Groom's Party</h4>
+                    <div class="space-y-1 text-sm text-gray-600">
+                        <p class="font-medium text-earth">Best Man</p>
+                        <p>• </p>
+                        <p class="font-medium text-earth mt-3">Groomsmen</p>
+                        <p>• </p>
+                        <p>• </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Roles -->
+            <div class="space-y-3 text-center">
+                <h4 class="font-serif text-lg font-medium text-sage mb-2">Special Roles</h4>
+                <div class="grid sm:grid-cols-2 gap-4 text-sm text-gray-600">
+                    <div>
+                        <p class="font-medium text-earth">Flower Girl</p>
+                        <p>• </p>
+                    </div>
+                    <div>
+                        <p class="font-medium text-earth">Ring Bearer</p>
+                        <p>• </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
         <!-- Dress Code -->
         <div class="bg-white rounded-2xl nature-shadow p-6 sm:p-8 text-center mb-8 fade-in hover-lift">
             <div class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
@@ -216,10 +293,10 @@
             <p class="text-gray-600 text-sm mb-2">Nature-Inspired Palette</p>
             <div class="flex justify-center items-center space-x-4 mb-2">
                 <div class="w-6 h-6 bg-sage rounded-full"></div>
-                <div class="w-6 h-6 rounded-full" style="background-color: #8b7355;"></div>
-                <div class="w-6 h-6 rounded-full" style="background-color: #a0845c;"></div>
+                <div class="w-6 h-6 rounded-full" style="background-color: #c4a484;"></div>
+                <div class="w-6 h-6 rounded-full" style="background-color: #d4b896;"></div>
             </div>
-            <p class="text-gray-600 text-xs">Sage green and warm brown tones welcomed</p>
+            <p class="text-gray-600 text-xs">Sage green and nude brown tones welcomed</p>
         </div>
 
         <!-- Contact -->
@@ -323,3 +400,4 @@
 
 
 </html>
+
