@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP - Janroi & Marinella</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap');
+        
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        
+        .bg-nature {
+            background: linear-gradient(135deg, #f7f8f3 0%, #e8f5e8 50%, #f0f4f0 100%);
+        }
+        
+        .text-sage { color: #87a96b; }
+        .text-earth { color: #8b7355; }
+        .bg-sage { background-color: #87a96b; }
+        .bg-sage-light { background-color: #f4f7f0; }
+        .border-sage { border-color: #87a96b; }
+        
+        .leaf-decoration {
+            position: relative;
+        }
+        
+        .leaf-decoration::before,
+        .leaf-decoration::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2387a96b'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.19 0 2.34-.21 3.41-.6.3-.11.49-.4.49-.72 0-.43-.35-.78-.78-.78-.28 0-.53.15-.67.38-.8.28-1.65.42-2.45.42-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6c0 .8-.14 1.65-.42 2.45-.23.14-.38.39-.38.67 0 .43.35.78.78.78.32 0 .61-.19.72-.49.39-1.07.6-2.22.6-3.41C22 6.48 17.52 2 12 2z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+        
+        .leaf-decoration::before {
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+        }
+        
+        .leaf-decoration::after {
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%) rotate(15deg);
+        }
+        
+        .botanical-border {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                       linear-gradient(45deg, #87a96b, #a8c686, #87a96b) border-box;
+        }
+        
+        .nature-shadow {
+            box-shadow: 0 10px 25px rgba(135, 169, 107, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(135, 169, 107, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-nature min-h-screen font-sans">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-3xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12 sm:mb-16 fade-in">
+            <!-- Botanical Header Decoration -->
+            <div class="flex justify-center items-center mb-6">
+                <svg class="w-16 h-16 sm:w-20 sm:h-20 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L8 8h8l-4-6zm0 20l4-6H8l4 6zm8-10l-6-4v8l6-4zM4 12l6 4V8l-6 4z"/>
+                </svg>
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-earth mb-3">
+                Janroi <span class="text-sage">&</span> Marinella
+            </h1>
+            
+            <div class="w-24 h-px bg-sage mx-auto mb-4"></div>
+            
+            <p class="text-earth text-lg sm:text-xl font-light mb-2">December 13th, 2025</p>
+            <p class="text-gray-600 text-sm sm:text-base">Basilica of St Michael the Archangel, Tayabas City</p>
+        </div>
+
+        <!-- Main RSVP Card -->
+        <div class="bg-white rounded-2xl nature-shadow p-6 sm:p-8 lg:p-10 mb-8 sm:mb-12 fade-in hover-lift">
+            <div class="text-center mb-8">
+                <h2 class="font-serif text-2xl sm:text-3xl font-medium text-earth mb-4 leaf-decoration">
+                    Your Presence is Requested
+                </h2>
+                <p class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
+                    We would be honored to have you celebrate this special moment with us
+                </p>
+                <p class="text-sage text-xs sm:text-sm mt-3 font-medium">
+                    Please respond by November 13th, 2025
+                </p>
+            </div>
+
+            <form id="rsvpForm" class="space-y-6">
+                <!-- Name Fields -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-earth font-medium mb-2 text-sm">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required 
+                               class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
+                    </div>
+                    <div>
+                        <label class="block text-earth font-medium mb-2 text-sm">Last Name</label>
+                        <input type="text" id="lastName"  name="lastName" required 
+                               class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-earth font-medium mb-2 text-sm">Email Address</label>
+                    <input type="email" id="email"    name="email" required 
+                           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
+                </div>
+
+                <!-- Attendance -->
+                <div>
+                    <label class="block text-earth font-medium mb-4 text-sm">Will you be joining us?</label>
+                    <div class="space-y-3">
+                        <label class="flex items-center cursor-pointer p-4 bg-sage-light/20 rounded-xl hover:bg-sage-light/40 transition-colors">
+                            <input type="radio" name="attendance" value="yes" required class="w-4 h-4 text-sage focus:ring-sage">
+                            <span class="ml-3 text-earth text-sm">Yes, we'll be there to celebrate with you</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer p-4 bg-sage-light/20 rounded-xl hover:bg-sage-light/40 transition-colors">
+                            <input type="radio" name="attendance" value="no" required class="w-4 h-4 text-sage focus:ring-sage">
+                            <span class="ml-3 text-earth text-sm">Unfortunately, we cannot attend</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Guest Count -->
+                <div id="guestSection" class="hidden">
+                    <label class="block text-earth font-medium mb-2 text-sm">Number of Guests</label>
+                    <select id="guestCount" name="guestCount" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                    </select>
+                </div>
+
+                <!-- Special Message -->
+                <div>
+                    <label class="block text-earth font-medium mb-2 text-sm">A Note for the Couple (Optional)</label>
+                    <textarea id="message" name="message" rows="4"
+                              placeholder="Share your thoughts, wishes, or any special message..."
+                              class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all resize-none bg-sage-light/30"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-sage text-white font-medium py-4 px-6 rounded-xl hover:bg-sage/90 transform hover:scale-[1.02] transition-all duration-200 nature-shadow">
+                    Send Response
+                </button>
+            </form>
+        </div>
+
+        <!-- Wedding Details -->
+        <div class="grid sm:grid-cols-2 gap-6 mb-8 sm:mb-12">
+            <!-- Ceremony -->
+            <div class="bg-white rounded-2xl nature-shadow p-6 text-center fade-in hover-lift">
+                <div class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L8 8h8l-4-6z"/>
+                        <path d="M8 8v12h8V8H8z"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl font-medium text-earth mb-2">Ceremony</h3>
+                <p class="text-gray-600 text-sm mb-1">4:00 PM</p>
+                <p class="text-gray-600 text-sm leading-relaxed">Basilica of St Michael the Archangel</p>
+                <p class="text-gray-600 text-sm">Tayabas City</p>
+            </div>
+
+            <!-- Reception -->
+            <div class="bg-white rounded-2xl nature-shadow p-6 text-center fade-in hover-lift">
+                <div class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="font-serif text-xl font-medium text-earth mb-2">Reception</h3>
+                <p class="text-gray-600 text-sm mb-1">6:00 PM</p>
+                <p class="text-gray-600 text-sm">Palaisdaan Tayabas</p>
+                <p class="text-gray-600 text-sm">Dinner & Celebration</p>
+            </div>
+        </div>
+
+        <!-- Dress Code -->
+        <div class="bg-white rounded-2xl nature-shadow p-6 sm:p-8 text-center mb-8 fade-in hover-lift">
+            <div class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-earth mb-3">Attire</h3>
+            <p class="text-gray-600 text-sm mb-2">Nature-Inspired Palette</p>
+            <div class="flex justify-center items-center space-x-4 mb-2">
+                <div class="w-6 h-6 bg-sage rounded-full"></div>
+                <div class="w-6 h-6 rounded-full" style="background-color: #8b7355;"></div>
+                <div class="w-6 h-6 rounded-full" style="background-color: #a0845c;"></div>
+            </div>
+            <p class="text-gray-600 text-xs">Sage green and warm brown tones welcomed</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="text-center text-gray-600 text-sm fade-in">
+            <div class="w-16 h-px bg-sage mx-auto mb-4"></div>
+            <p class="mb-1">Questions? Reach out to us</p>
+            <p class="text-sage font-medium">janroi.marinella.wedding@email.com</p>
+            <p class="text-sage font-medium">(555) 123-4567</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-40 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center nature-shadow">
+            <div class="w-16 h-16 bg-sage-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-sage" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-medium text-earth mb-3">Thank You</h3>
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Your response has been received. We're grateful for your presence in our celebration.</p>
+            <button onclick="closeModal()" class="bg-sage text-white px-6 py-2 rounded-xl hover:bg-sage/90 transition-colors text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+<script>
+  // Show/hide guest count when attendance changes
+  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      const guestSection = document.getElementById('guestSection');
+      if (this.value === 'yes') {
+        guestSection.classList.remove('hidden');
+      } else {
+        guestSection.classList.add('hidden');
+      }
+    });
+  });
+
+  const form = document.getElementById('rsvpForm');
+  const guestSection = document.getElementById('guestSection');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fd = new FormData(form);
+
+    // If "no", force guestCount = 0; otherwise default to 1 if empty
+    const attendance = (fd.get('attendance') || '').toLowerCase();
+    if (attendance === 'no') {
+      fd.set('guestCount', '0');
+    } else {
+      fd.set('guestCount',  fd.get('guestCount') || '1');
+    }
+
+    // Optional: include a timestamp
+    fd.append('timestamp', new Date().toISOString());
+
+    // 🔗 Paste your Apps Script Web App URL below
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6B0snpg2jy0bT88aOa1DkUZJTykqtELME1PU3wCOhWlBJA7VL8CHki98QSJirdG1a/exec';
+
+    // Use no-cors to avoid preflight; we won’t read the response
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: fd,
+      mode: 'no-cors'
+    })
+    .catch(() => { /* ignore errors; we still show the modal */ })
+    .finally(() => {
+      // Show success modal
+      const modal = document.getElementById('successModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      // Reset form and UI
+      form.reset();
+      guestSection.classList.add('hidden');
+    });
+  });
+
+  function closeModal() {
+    const modal = document.getElementById('successModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Staggered fade-in animation
+  document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach((el, index) => {
+      el.style.animationDelay = `${index * 0.1}s`;
+    });
+  });
+</script>
+
+
+</html>
