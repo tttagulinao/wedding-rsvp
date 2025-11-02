@@ -8,8 +8,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
         
-        .font-serif { font-family: 'Great Vibes', cursive; }
-        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-serif {font-family: Great Vibes !important;}
+        .font-sans { font-family: cursive, sans-serif !important; }
         
         .bg-nature {
             background: linear-gradient(135deg, #f7f8f3 0%, #e8f5e8 50%, #f0f4f0 100%);
@@ -36,13 +36,13 @@
         }
         
         .leaf-decoration::before {
-            left: -30px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%) rotate(-15deg);
         }
         
         .leaf-decoration::after {
-            right: -30px;
+            right: 18px;
             top: 50%;
             transform: translateY(-50%) rotate(15deg);
         }
@@ -98,6 +98,11 @@
             min-height: 90px;
             padding: 14px;
         }
+        @media (min-width: 1024px) {
+        .lg\:text-6xl {
+        font-size: 4.75rem !important;
+        line-height: 1;
+        }}
     </style>
 </head>
 <body class="bg-nature min-h-screen font-sans">
@@ -114,13 +119,13 @@
                              onerror="this.style.display='none'; document.getElementById('placeholderFrame').style.display='flex';">
                     </div>
                     <div id="placeholderFrame" class="picture-frame placeholder hidden items-center justify-center">
-                        <span class="text-earth font-medium">Janroi & Marinella</span>
+                        <span class="text-earth font-medium" style="font-size: 90px;">Jan Roi & Marinella</span>
                     </div>
                 </div>
             </div>
             
             <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-earth mb-3">
-                Janroi <span class="text-sage">&</span> Marinella
+                Jan Roi <span class="text-sage">&</span> Marinella
             </h1>
             
             <div class="w-24 h-px bg-sage mx-auto mb-4"></div>
@@ -380,8 +385,8 @@
         <div class="text-center text-gray-600 text-sm fade-in">
             <div class="w-16 h-px bg-sage mx-auto mb-4"></div>
             <p class="mb-1">Questions? Reach out to us</p>
-            <p class="text-sage font-medium">janroi.marinella.wedding@email.com</p>
-            <p class="text-sage font-medium">(555) 123-4567</p>
+            <p class="text-sage font-medium">janroi.marinella.wedding@gmail.com</p>
+            <p class="text-sage font-medium">09694614780</p>
         </div>
     </div>
 
