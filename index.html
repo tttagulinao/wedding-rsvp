@@ -406,95 +406,103 @@
         </div>
     </div>
 
-    <script>
-        // Show/hide sections based on attendance
-        document.querySelectorAll('input[name="attendance"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const guestSection = document.getElementById('guestSection');
-                
-                if (this.value === 'yes') {
-                    guestSection.classList.remove('hidden');
-                } else {
-                    guestSection.classList.add('hidden');
-                }
-            });
-        });
+<script>
+    // ⚠️ CRITICAL STEP 1: Replace 'YOUR_WEB_APP_URL' with the URL from your Apps Script deployment!
+    const SCRIPT_URL = 'https://tttagulinao.github.io/wedding-rsvp/'; 
 
-        // Handle form submission
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    // Show/hide sections based on attendance
+    document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const guestSection = document.getElementById('guestSection');
             
-            // Collect form data
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guestCount: document.getElementById('guestCount').value || '1',
-                message: document.getElementById('message').value,
-                timestamp: new Date().toISOString()
-            };
-            
-            // Show success modal
+            if (this.value === 'yes') {
+                guestSection.classList.remove('hidden');
+            } else {
+                guestSection.classList.add('hidden');
+            }
+        });
+    });
+
+    // Handle form submission (The FIX is in this block)
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 1. Get the form data correctly using FormData
+        const formData = new FormData(this);
+        const params = new URLSearchParams(formData);
+
+        // 2. Use fetch to send the data to Google Apps Script
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: params, // Send the URL-encoded data
+            mode: 'no-cors' // Crucial for cross-origin communication with Apps Script
+        })
+        .then(() => {
+            // Assume success and show the modal
             document.getElementById('successModal').classList.remove('hidden');
             document.getElementById('successModal').classList.add('flex');
             
-            // Reset form
+            // 3. Reset form and hide guest section
             this.reset();
             document.getElementById('guestSection').classList.add('hidden');
-            
-            console.log('RSVP Data:', formData);
+        })
+        .catch(error => {
+            // Handle network errors or incorrect URL issues
+            console.error('Submission Error:', error);
+            alert('An error occurred. Please check your internet connection and the deployment URL.');
+        });
+    });
+
+    function closeModal() {
+        document.getElementById('successModal').classList.add('hidden');
+        document.getElementById('successModal').classList.remove('flex');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('successModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Add staggered fade-in animation and size the header picture frame to match the header width
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('.fade-in');
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
         });
 
-        function closeModal() {
-            document.getElementById('successModal').classList.add('hidden');
-            document.getElementById('successModal').classList.remove('flex');
+        function resizeFrame() {
+            const h1 = document.querySelector('h1.font-serif');
+            const frame = document.getElementById('pictureFrame');
+            const placeholder = document.getElementById('placeholderFrame');
+            if (!h1 || !frame) return;
+
+            // Measure header text width and clamp to sensible min/max
+            const headerWidth = h1.offsetWidth;
+            const container = document.querySelector('.container') || document.body;
+            const maxAllowed = Math.min(container.offsetWidth - 48, 900);
+            const minAllowed = 140;
+            const targetWidth = Math.max(minAllowed, Math.min(headerWidth, maxAllowed));
+
+            frame.style.width = targetWidth + 'px';
+            // Set a landscape aspect ratio (adjust 0.32 to taste)
+            frame.style.height = Math.round(targetWidth * 0.32) + 'px';
+
+            if (placeholder) {
+                placeholder.style.width = frame.style.width;
+                placeholder.style.height = frame.style.height;
+            }
         }
 
-        // Close modal when clicking outside
-        document.getElementById('successModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Add staggered fade-in animation and size the header picture frame to match the header width
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            function resizeFrame() {
-                const h1 = document.querySelector('h1.font-serif');
-                const frame = document.getElementById('pictureFrame');
-                const placeholder = document.getElementById('placeholderFrame');
-                if (!h1 || !frame) return;
-
-                // Measure header text width and clamp to sensible min/max
-                const headerWidth = h1.offsetWidth;
-                const container = document.querySelector('.container') || document.body;
-                const maxAllowed = Math.min(container.offsetWidth - 48, 900);
-                const minAllowed = 140;
-                const targetWidth = Math.max(minAllowed, Math.min(headerWidth, maxAllowed));
-
-                frame.style.width = targetWidth + 'px';
-                // Set a landscape aspect ratio (adjust 0.32 to taste)
-                frame.style.height = Math.round(targetWidth * 0.32) + 'px';
-
-                if (placeholder) {
-                    placeholder.style.width = frame.style.width;
-                    placeholder.style.height = frame.style.height;
-                }
-            }
-
-            // initial size and on resize (debounced)
-            resizeFrame();
-            let resizeTimer;
-            window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(resizeFrame, 80); });
-        });
-    </script>
+        // initial size and on resize (debounced)
+        resizeFrame();
+        let resizeTimer;
+        window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(resizeFrame, 80); });
+    });
+</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9772834cb740bc3f',t:'MTc1NjUzODI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
