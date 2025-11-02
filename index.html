@@ -6,9 +6,9 @@
     <title>Wedding RSVP - Janroi & Marinella</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
         
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-serif { font-family: 'Great Vibes', cursive; }
         .font-sans { font-family: 'Inter', sans-serif; }
         
         .bg-nature {
@@ -74,6 +74,30 @@
             transform: translateY(-2px);
             box-shadow: 0 15px 35px rgba(135, 169, 107, 0.15);
         }
+
+        /* Picture frame for header logo */
+        .picture-frame {
+            border: 4px solid rgba(135,169,107,0.18);
+            border-radius: 12px;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #87a96b22, #a8c68622) border-box;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.15s ease;
+            max-width: 100%;
+            display: flex;
+        }
+
+        .picture-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .picture-frame.placeholder {
+            min-height: 90px;
+            padding: 14px;
+        }
     </style>
 </head>
 <body class="bg-nature min-h-screen font-sans">
@@ -83,9 +107,15 @@
         <div class="text-center mb-12 sm:mb-16 fade-in">
             <!-- Botanical Header Decoration -->
             <div class="flex justify-center items-center mb-6">
-                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-sage/20 overflow-hidden bg-sage-light/30 flex items-center justify-center">
-                    <img src="logo2.png"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <!-- Picture frame logo sized to match the header text width -->
+                <div id="headerLogoWrap" class="flex justify-center items-center mb-6">
+                    <div id="pictureFrame" class="picture-frame overflow-hidden bg-sage-light/30 flex items-center justify-center">
+                        <img id="headerLogoImg" src="marin2.jpg" alt="Janroi & Marinella"
+                             onerror="this.style.display='none'; document.getElementById('placeholderFrame').style.display='flex';">
+                    </div>
+                    <div id="placeholderFrame" class="picture-frame placeholder hidden items-center justify-center">
+                        <span class="text-earth font-medium">Janroi & Marinella</span>
+                    </div>
                 </div>
             </div>
             
@@ -109,7 +139,7 @@
                     We would be honored to have you celebrate this special moment with us
                 </p>
                 <p class="text-sage text-xs sm:text-sm mt-3 font-medium">
-                    Please respond by November 13th, 2025
+                    Please respond by December 1, 2025
                 </p>
             </div>
 
@@ -198,9 +228,10 @@
                     </svg>
                 </div>
                 <h3 class="font-serif text-xl font-medium text-earth mb-2">Reception</h3>
-                <p class="text-gray-600 text-sm mb-1">6:00 PM</p>
-                <p class="text-gray-600 text-sm">Palaisdaan Tayabas</p>
-                <p class="text-gray-600 text-sm">Dinner & Celebration</p>
+                <p class="text-gray-600 text-sm mb-1">12:00 NN</p>
+                <p class="text-gray-600 text-sm">Kamayan sa Palaisdaan - Air Summit</p>
+                <p class="text-gray-600 text-sm">Island Pavillion</p>
+                <p class="text-gray-600 text-sm">Tayabas Quezon</p>
             </div>
         </div>
 
@@ -422,13 +453,42 @@
             }
         });
 
-        // Add staggered fade-in animation
+        // Add staggered fade-in animation and size the header picture frame to match the header width
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.1}s`;
             });
+
+            function resizeFrame() {
+                const h1 = document.querySelector('h1.font-serif');
+                const frame = document.getElementById('pictureFrame');
+                const placeholder = document.getElementById('placeholderFrame');
+                if (!h1 || !frame) return;
+
+                // Measure header text width and clamp to sensible min/max
+                const headerWidth = h1.offsetWidth;
+                const container = document.querySelector('.container') || document.body;
+                const maxAllowed = Math.min(container.offsetWidth - 48, 900);
+                const minAllowed = 140;
+                const targetWidth = Math.max(minAllowed, Math.min(headerWidth, maxAllowed));
+
+                frame.style.width = targetWidth + 'px';
+                // Set a landscape aspect ratio (adjust 0.32 to taste)
+                frame.style.height = Math.round(targetWidth * 0.32) + 'px';
+
+                if (placeholder) {
+                    placeholder.style.width = frame.style.width;
+                    placeholder.style.height = frame.style.height;
+                }
+            }
+
+            // initial size and on resize (debounced)
+            resizeFrame();
+            let resizeTimer;
+            window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(resizeFrame, 80); });
         });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9772834cb740bc3f',t:'MTc1NjUzODI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
