@@ -36,13 +36,13 @@
         }
         
         .leaf-decoration::before {
-            left: -3px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%) rotate(-15deg);
         }
         
         .leaf-decoration::after {
-            right: 1px;
+            right: 18px;
             top: 50%;
             transform: translateY(-50%) rotate(15deg);
         }
@@ -153,12 +153,12 @@
                 <div class="grid sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-earth font-medium mb-2 text-sm">First Name</label>
-                        <input type="text" id="firstName" required 
+                        <input type="text" id="firstName" name="firstName" required 
                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
                     </div>
                     <div>
                         <label class="block text-earth font-medium mb-2 text-sm">Last Name</label>
-                        <input type="text" id="lastName" required 
+                        <input type="text" id="lastName" name="lastName" required 
                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                 <!-- Email -->
                 <div>
                     <label class="block text-earth font-medium mb-2 text-sm">Email Address</label>
-                    <input type="email" id="email" required 
+                    <input type="email" id="email" name="email" 
                            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
                 </div>
 
@@ -189,15 +189,15 @@
                 <div id="guestSection" class="hidden">
                     <label class="block text-earth font-medium mb-2 text-sm">Number of Guests</label>
                     <select id="guestCount" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all bg-sage-light/30">
-                        <option value="1">1 Guest</option>
-                        <option value="2">2 Guests</option>
+                        <option name="guestCount" value="1">1 Guest</option>
+                        <option name="guestCount" value="2">2 Guests</option>
                     </select>
                 </div>
 
                 <!-- Special Message -->
                 <div>
                     <label class="block text-earth font-medium mb-2 text-sm">A Note for the Couple (Optional)</label>
-                    <textarea id="message" rows="4" 
+                    <textarea id="message" rows="4" name="message"
                               placeholder="Share your thoughts, wishes, or any special message..."
                               class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent transition-all resize-none bg-sage-light/30"></textarea>
                 </div>
@@ -496,5 +496,4 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9772834cb740bc3f',t:'MTc1NjUzODI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
 
